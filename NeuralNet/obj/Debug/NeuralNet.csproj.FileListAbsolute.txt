@@ -1,5 +1,0 @@
-C:\Users\Bryan\Code\C#\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe.config
-C:\Users\Bryan\Code\C#\NeuralNet\NeuralNet\bin\Debug\NeuralNet.exe
-C:\Users\Bryan\Code\C#\NeuralNet\NeuralNet\bin\Debug\NeuralNet.pdb
-C:\Users\Bryan\Code\C#\NeuralNet\NeuralNet\obj\Debug\NeuralNet.exe
-C:\Users\Bryan\Code\C#\NeuralNet\NeuralNet\obj\Debug\NeuralNet.pdb
