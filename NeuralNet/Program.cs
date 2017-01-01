@@ -39,9 +39,9 @@ namespace NeuralNet
 			{
 				Inputs = new List<Connection>
 				{
-					new Connection { Weight = 5, Neuron = input1 },
-					new Connection { Weight = -6, Neuron = input2 },
-					new Connection { Weight = -3, Neuron = bias1 }
+					new Connection { Weight = 5, FromNeuron = input1 },
+					new Connection { Weight = -6, FromNeuron = input2 },
+					new Connection { Weight = -3, FromNeuron = bias1 }
 				}
 			};
 
@@ -49,9 +49,9 @@ namespace NeuralNet
 			{
 				Inputs = new List<Connection>
 				{
-					new Connection { Weight = -6, Neuron = input1 },
-					new Connection { Weight = 6, Neuron = input2 },
-					new Connection { Weight = -3, Neuron = bias1 }
+					new Connection { Weight = -6, FromNeuron = input1 },
+					new Connection { Weight = 6, FromNeuron = input2 },
+					new Connection { Weight = -3, FromNeuron = bias1 }
 				}
 			};
 
@@ -59,9 +59,9 @@ namespace NeuralNet
 			{
 				Inputs = new List<Connection>
 				{
-					new Connection { Weight = 10, Neuron = input1 },
-					new Connection { Weight = 10, Neuron = input2 },
-					new Connection { Weight = -5, Neuron = bias2 }
+					new Connection { Weight = 10, FromNeuron = input1 },
+					new Connection { Weight = 10, FromNeuron = input2 },
+					new Connection { Weight = -5, FromNeuron = bias2 }
 				}
 			};
 

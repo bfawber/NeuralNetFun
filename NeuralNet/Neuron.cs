@@ -10,15 +10,32 @@ namespace NeuralNet
 	{
 		public IEnumerable<Connection> Inputs { get; set; }
 
+		public IEnumerable<Connection> Outputs { get; set; }
+
 		public float Value { get; set; }
 
 		public Neuron() { }
+	}
+
+	public static class NeuronFactory
+	{
+		public static Neuron Create(float value, List<Connection> inputs = null, List<Connection> outputs = null)
+		{
+			return new Neuron
+			{
+				Inputs = inputs == null ? new List<Connection>() : inputs,
+				Outputs = outputs == null ? new List<Connection>() : outputs,
+				Value = value
+			};
+		}
 	}
 
 	public class Connection
 	{
 		public int Weight { get; set; }
 
-		public Neuron Neuron { get; set; }
+		public Neuron FromNeuron { get; set; }
+
+		public Neuron ToNeuron { get; set; }
 	}
 }
