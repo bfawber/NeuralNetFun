@@ -11,6 +11,50 @@ namespace NeuralNet
 		static void Main(string[] args)
 		{
 			XOR();
+			XOR2();
+		}
+
+		static void XOR2()
+		{
+			NeuralNet nn = new NeuralNet
+			{
+				ActivationFunction = (value) =>
+				{
+					return (float)(1.0 / (1.0 + Math.Pow(Math.E, -value)));
+				}
+			};
+
+			// inputs
+			nn.AddNeuron(0, NeuronFactory.Create(1));
+			nn.AddNeuron(0, NeuronFactory.Create(0));
+			nn.AddNeuron(0, NeuronFactory.Create(1));
+
+			// hidden layer 
+			nn.AddNeuron(1, NeuronFactory.Create(-1));
+			nn.AddNeuron(1, NeuronFactory.Create(-1));
+			nn.AddNeuron(1, NeuronFactory.Create(1));
+
+			// outputs
+			nn.AddNeuron(2, NeuronFactory.Create(-1));
+
+			// connections to h1
+			nn.ConnectNeurons(0, 0, 1, 0, 5);
+			nn.ConnectNeurons(0, 1, 1, 0, -6);
+			nn.ConnectNeurons(0, 2, 1, 0, -3);
+
+			// connections to h2
+			nn.ConnectNeurons(0, 0, 1, 1, -6);
+			nn.ConnectNeurons(0, 1, 1, 1, 6);
+			nn.ConnectNeurons(0, 2, 1, 1, -3);
+
+			// connections to output layer
+			nn.ConnectNeurons(1, 0, 2, 0, 10);
+			nn.ConnectNeurons(1, 1, 2, 0, 10);
+			nn.ConnectNeurons(1, 2, 2, 0, -5);
+
+
+			Console.WriteLine($"Output = {nn.Calculate().First()}");
+			Console.ReadKey();
 		}
 
 		static void XOR()
@@ -59,8 +103,8 @@ namespace NeuralNet
 			{
 				Inputs = new List<Connection>
 				{
-					new Connection { Weight = 10, FromNeuron = input1 },
-					new Connection { Weight = 10, FromNeuron = input2 },
+					new Connection { Weight = 10, FromNeuron = hidden1 },
+					new Connection { Weight = 10, FromNeuron = hidden2 },
 					new Connection { Weight = -5, FromNeuron = bias2 }
 				}
 			};

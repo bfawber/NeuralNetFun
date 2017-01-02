@@ -10,6 +10,11 @@ namespace NeuralNet
 	{
 		List<List<Neuron>> Net;
 
+		public IEnumerable<float> Calculate()
+		{
+			return Net[Net.Count - 1].Select(n => Calculate(n));
+		}
+
 		public float Calculate(Neuron neuron)
 		{
 			if(neuron.Inputs == null || !neuron.Inputs.Any())
@@ -53,15 +58,58 @@ namespace NeuralNet
 
 		public void AddNeuron(int layer, Neuron neuron)
 		{
-			if(Net.Count > layer)
+			if (layer > Net.Count)
 			{
-				if(Net[layer] == null)
+				throw new IndexOutOfRangeException();
+			}
+			else if(layer == Net.Count)
+			{
+				Net.Add(new List<Neuron> { neuron });
+			}
+			else
+			{
+				if (Net[layer] == null)
 				{
 					Net[layer] = new List<Neuron> { neuron };
 				}
 				else
 				{
 					Net[layer].Add(neuron);
+				}
+			}
+		}
+
+		public void ConnectNeurons(int fromLayer, int fromLocation, int toLayer, int toLocation, float weight)
+		{
+			Connection toConnection = new Connection
+			{
+				ToNeuron = Net[toLayer][toLocation],
+				Weight = weight
+			};
+
+			Net[fromLayer][fromLocation].Outputs.Add(toConnection);
+
+			Connection fromConnection = new Connection
+			{
+				FromNeuron = Net[fromLayer][fromLocation],
+				Weight = weight
+			};
+
+			Net[toLayer][toLocation].Inputs.Add(fromConnection);
+		}
+
+		public void ConnectLayersCompletelyWithRandomWeights()
+		{
+			Random rand = new Random();
+
+			for(int i = 0; i < Net.Count - 1; i++)
+			{
+				for(int j = 0; j < Net[i].Count; j++)
+				{
+					for (int z = 0; z < Net[i + 1].Count; i++)
+					{
+						ConnectNeurons(i, j, i + 1, z, rand.Next());
+					}
 				}
 			}
 		}

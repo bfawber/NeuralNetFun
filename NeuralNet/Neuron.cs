@@ -8,9 +8,9 @@ namespace NeuralNet
 {
 	public class Neuron
 	{
-		public IEnumerable<Connection> Inputs { get; set; }
+		public List<Connection> Inputs { get; set; }
 
-		public IEnumerable<Connection> Outputs { get; set; }
+		public List<Connection> Outputs { get; set; }
 
 		public float Value { get; set; }
 
@@ -32,7 +32,7 @@ namespace NeuralNet
 
 	public class Connection
 	{
-		public int Weight { get; set; }
+		public float Weight { get; set; }
 
 		public Neuron FromNeuron { get; set; }
 
